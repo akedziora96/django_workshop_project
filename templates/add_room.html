@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dodaj salę</title>
+</head>
+<body>
+    <h2>Widok dodawania sali:</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">nazwa sali:</label>
+        <input type="text" id="name" name="room_name">
+        <br>
+        <br>
+        <label for="capacity">pojemność sali:</label>
+        <input type="number" id='capacity' name="room_capacity">
+        <br>
+        <p>Projektor:</p>
+        <label for="projector">TAK:</label>
+        <input type="radio" id="projector" value="True" name="is_projector">
+        <label for="projector">NIE:</label>
+        <input type="radio" id="projector" value="False" name="is_projector" checked="checked">
+        <br>
+        <br>
+        <input type="submit" value="Dodaj">
+
+    </form>
+</body>
+</html>

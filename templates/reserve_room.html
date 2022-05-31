@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <input type="date" name="date">
+        <input type="text" name="comment">
+        <input type="submit" name="submit">
+    </form>
+<h2>Aktualne obłożenie sali {{ room.name }}:</h2>
+<table border="2">
+            {% for room_reservation in room_reservations %}
+            <tr>
+                <td>{{ room_reservation.date }}</td>
+                <td>{{ room_reservation.comment }}</td>
+            </tr>
+            {% endfor %}
+</table>
+</body>
+</html>

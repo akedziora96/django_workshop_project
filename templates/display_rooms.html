@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista dostępnych sal</title>
+</head>
+<body>
+<button><a href="/">Szukaj sali</a></button>
+<br>
+<h2>Lista dostępnych sal:</h2>
+<table border="2">
+        <th>nazwa:</th><th>pojemność:</th><th>projektor:</th><th>aktualnie wolna:</th>
+        {% for room in rooms %}
+            <tr>
+                <td><a href="/room/{{ room.id }}">{{ room.name }}</a></td>
+                <td>{{ room.capacity }}</td>
+                <td>{% if room.projector %} &#9989 {% else %} &#10060 {% endif %}</td>
+                <td>{% if room.is_free %} &#9989 {% else %} &#10060 {% endif %}</td>
+                <td><button><a href="/room/modify/{{ room.id }}/">edytuj</a></button></td>
+                <td><button><a href="/room/delete/{{ room.id }}">usuń</a></button></td>
+                <td><button><a href="/room/reserve/{{ room.id }}">zarezerwuj</a></button></td>
+            </tr>
+        {% endfor %}
+</table>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista dostępnych sal</title>
+</head>
+<body>
+<h2>Szczegóły sali {{ room.name }}:</h2>
+<table border="2">
+            <tr>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.projector }}</td>
+                <td><button><a href="/room/modify/{{ room.id }}/">edytuj</a></button></td>
+                <td><button><a href="/room/delete/{{ room.id }}">usuń</a></button></td>
+                <td><button><a href="/room/reserve/{{ room.id }}">zarezerwuj</a></button></td>
+            </tr>
+</table>
+<h2>Aktualne obłożenie sali {{ room.name }}:</h2>
+
+    {% if room_reservations.exists %}
+        <table border="2">
+            {% for room_reservation in room_reservations %}
+                <tr>
+                    <td>{{ room_reservation.date }}</td>
+                    <td>{{ room_reservation.comment }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Brak aktualnych rezerwacji</p>
+    {% endif %}
+
+</body>
+</html>

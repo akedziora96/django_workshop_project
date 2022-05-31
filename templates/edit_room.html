@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edytuj salę</title>
+</head>
+<body>
+    <h2>Widok edycji sali:</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">nazwa sali:</label>
+        <input type="text" id="name" name="room_new_name" value="{{ edited_room.name }}">
+        <br>
+        <br>
+        <label for="capacity">pojemność sali:</label>
+        <input type="number" id='capacity' name="room_new_capacity" value="{{ edited_room.capacity }}">
+        <br>
+        <p>Projektor:</p>
+        <label for="projector">TAK:</label>
+        <input type="radio" id="projector" value="True" name="is_projector_new"
+                {% if edited_room.projector  %} checked="checked" {% endif %}>
+        <label for="projector">NIE:</label>
+        <input type="radio" id="projector" value="False" name="is_projector_new"
+               {% if not edited_room.projector  %} checked="checked" {% endif %}>
+        <br>
+        <br>
+        <input type="submit" value="Dodaj">
+
+    </form>
+</body>
+</html>

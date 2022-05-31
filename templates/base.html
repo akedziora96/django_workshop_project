@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+<body>
+<button><a href="/rooms/">Lista sal</a></button>
+<button><a href="/room/new/">Dodaj salę</a></button>
+<br>
+<h2>Dostępne sale (wg. kryteriów wyszukiwania):</h2>
+<table border="2">
+    <th>nazwa:</th><th>pojemność:</th><th>projektor:</th><th>aktualnie wolna:</th>
+    {% for room in rooms %}
+        <tr>
+            <td><a href="/room/{{ room.id }}">{{ room.name }}</a></td>
+            <td>{{ room.capacity }}</td>
+            <td>{% if room.projector %} &#9989 {% else %} &#10060 {% endif %}</td>
+            <td>{% if room.is_free %} &#9989 {% else %} &#10060 {% endif %}</td>
+            <td><button><a href="/room/modify/{{ room.id }}/">edytuj</a></button></td>
+            <td><button><a href="/room/delete/{{ room.id }}">usuń</a></button></td>
+            <td><button><a href="/room/reserve/{{ room.id }}">zarezerwuj</a></button></td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<h2>Wyszukaj salę:</h2>
+<form method="get">
+    <label for="name">nazwa sali:</label>
+    <input type="text" id="name" name="room_name">
+    <br>
+    <br>
+    <label for="capacity">minimalna pojemność sali:</label>
+    <input type="number" id='capacity' name="room_capacity">
+    <br>
+    <p>Projektor:</p>
+    <label for="projector">TAK:</label>
+    <input type="radio" id="projector" value="True" name="is_projector">
+    <label for="projector">NIE:</label>
+    <input type="radio" id="projector" value="False" name="is_projector">
+    <label for="projector">OBA:</label>
+    <input type="radio" id="projector" value="both" name="is_projector" checked="checked">
+    <br>
+    <br>
+    <input type="submit" value="Szukaj">
+    <br>
+    <br>
+    <footer>
+        Autor: <address>Aleksander Kędziora</address>
+        <p>wszelkie prawa zastrzeżone</p>
+    </footer>
+</form>
+</body>
+</html>
